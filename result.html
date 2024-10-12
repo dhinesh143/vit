@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <!-- Link to the stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">MS<span>Detect</span></div>
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('upload_and_predict') }}">Predict</a></li>
+        </ul>
+    </nav>
+
+    <!-- Result Section -->
+    <section class="result-section">
+        <div class="container">
+            <h1>Prediction Result</h1>
+            <div class="result-content">
+                <div class="image-box">
+                    <img src="{{ uploaded_image }}" alt="Uploaded Image">
+                </div>
+                <div class="prediction-box">
+                    <h2>Your MRI Scan Indicates:</h2>
+                    <p class="prediction-text">{{ prediction }}</p>
+                    <a href="{{ url_for('upload_and_predict') }}" class="btn btn-secondary">Try Another Image</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2024 Multiple Sclerosis Detection Project</p>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Menu Toggle -->
+    <script>
+        const click = document.getElementById('click');
+        const navbar = document.querySelector('.navbar ul');
+
+        click.addEventListener('change', function() {
+            if (this.checked) {
+                navbar.style.left = '0';
+            } else {
+                navbar.style.left = '-100%';
+            }
+        });
+    </script>
+</body>
+</html>
